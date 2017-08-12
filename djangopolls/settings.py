@@ -20,7 +20,14 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-with open(os.path.join(BASE_DIR, 'djangopolls', 'secret.key')) as f:
+SECRET_FILE = os.path.join(BASE_DIR, 'djangopolls', 'secret.key')
+if not os.path.isfile(SECRET_FILE):
+    print('Cannot find secret.key, creating one with insecure value: BeamMeUpJohnny')
+    print('DO NOT USE THIS SECRET KEY IN PRODUCTION ENVIRONMENTS')
+    with open(SECRET_FILE, 'w') as f:
+        f.write('BeamMeUpJohnny')
+
+with open(SECRET_FILE) as f:
     SECRET_KEY = f.read().strip()
 
 # SECURITY WARNING: don't run with debug turned on in production!
