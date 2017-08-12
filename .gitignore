@@ -1,4 +1,4 @@
 .vscode
 djangopolls/secret.key
-*/__pycache__/
+*.pyc
 db.sqlite3
